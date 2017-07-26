@@ -59,19 +59,55 @@ vi jupyter_notebook_config.py
 cd /alvaroRprocessingEBS2/githubRepos/Spark_and_Python_for_BD_with_PySpark
 jupyter notebook
 # xxxx always copy the link and token after starting the notebook.
-# [I 04:36:46.788 NotebookApp] The port 8888 is already in use, trying another port.
-# [I 04:36:46.796 NotebookApp] Serving notebooks from local directory: /home/ubuntu
-# [I 04:36:46.797 NotebookApp] 0 active kernels
-# [I 04:36:46.797 NotebookApp] The Jupyter Notebook is running at: https://[all ip addresses on your system]:8889/?token=39c4cdcd1fcd74fbf35834d1061f5aed361faf8fd483e71b
-# [I 04:36:46.797 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
-# [C 04:36:46.797 NotebookApp]
+# [I 20:19:37.153 NotebookApp] Serving notebooks from local directory: /alvaroRprocessingEBS2/githubRepos/Spark_and_Python_for_BD_with_PySpark
+# [I 20:19:37.153 NotebookApp] 0 active kernels
+# [I 20:19:37.153 NotebookApp] The Jupyter Notebook is running at: https://[all ip addresses on your system]:8888/?token=cb8ec580cbaa6a73f5796ddcc7d6bb5f2517f5a40c971f20
+# [I 20:19:37.153 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+# [C 20:19:37.154 NotebookApp]
 #
 #     Copy/paste this URL into your browser when you connect for the first time,
 #     to login with a token:
-#         https://localhost:8889/?token=8e783c4508c6aa73d97dd91c4e440cfc36ff406f3063bdf0
+#         https://localhost:8888/?token=cb8ec580cbaa6a73f5796ddcc7d6bb5f2517f5a40c971f20
 
-# https://ec2-54-183-230-47.us-west-1.compute.amazonaws.com:8889/?token=8e783c4508c6aa73d97dd91c4e440cfc36ff406f3063bdf0
-# Had to add "Custom TCP Rule", Port Range 8889.
+# https://ec2-54-183-230-47.us-west-1.compute.amazonaws.com:8888/?token=cb8ec580cbaa6a73f5796ddcc7d6bb5f2517f5a40c971f20
+# Had to add "Custom TCP Rule", Port Range 8888.
 # After first time, can go to:
 # https://ec2-54-183-230-47.us-west-1.compute.amazonaws.com:8889
 # To start PySpark, see the "Starting_PySpark" notebook.
+
+# 2017/07/20
+# Trying to give spark access to s3.
+sudo cp /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-env.sh.template /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-env.sh
+sudo vi /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-env.sh
+AWS_ACCESS_KEY_ID='AKIAIKRGL2WLKQS4MGSQ'
+AWS_SECRET_ACCESS_KEY='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'
+
+# see trying_access_to_s3.ipynb
+# not working, and apparently the above solution is terrible:
+# see https://github.com/ramhiser/spark-kubernetes/issues/3
+# and especially https://sparkour.urizone.net/recipes/using-s3/
+
+# 2017/07/20
+# will remove those lines from spark-env.sh.
+sudo cp /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-env.sh.template /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-env.sh
+
+# also, Qubole people are helping out (see emails), but that's also still not working.
+# Consensus from Jose Portilla and Qubole: will have to use SparkContext as opposed
+# to SparkSession.
+
+# will try this one which Jose Portilla pointed me to:
+# https://medium.com/@subhojit20_27731/apache-spark-and-amazon-s3-gotchas-and-best-practices-a767242f3d98
+# Making Spark 2.0.1 work with S3a
+# For Spark 2.0.1 use hadoop-aws-2.7.3.jar, aws-java-sdk-1.7.4.jar, joda-time-2.9.3.jar in your classpath;
+# => don't know how to do that.
+# don’t forget to update spark-default.conf with the AWS keys and the S3A FileSystemClass
+# Spark.hadoop.fs.s3a.access.key AKIAIKRGL2WLKQS4MGSQ
+# spark.hadoop.fs.s3a.secret.key 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
+# spark.hadoop.fs.s3a.impl org.apache.hadoop.fs.s3a.S3AFileSystem
+sudo cp /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-defaults.conf.template /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-defaults.conf
+sudo vi /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-defaults.conf
+Spark.hadoop.fs.s3a.access.key AKIAIKRGL2WLKQS4MGSQ
+spark.hadoop.fs.s3a.secret.key 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
+spark.hadoop.fs.s3a.impl org.apache.hadoop.fs.s3a.S3AFileSystem
+# still not working, see the trying_access_to_s3 notebook, which is copying code from
+# https://spark.apache.org/docs/2.1.0/sql-programming-guide.html
