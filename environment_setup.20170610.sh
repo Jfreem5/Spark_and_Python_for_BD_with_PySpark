@@ -101,8 +101,8 @@ sudo cp /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-
 # For Spark 2.0.1 use hadoop-aws-2.7.3.jar, aws-java-sdk-1.7.4.jar, joda-time-2.9.3.jar in your classpath;
 # => don't know how to do that.
 # don’t forget to update spark-default.conf with the AWS keys and the S3A FileSystemClass
-# Spark.hadoop.fs.s3a.access.key AKIAIKRGL2WLKQS4MGSQ
-# spark.hadoop.fs.s3a.secret.key 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
+# Spark.hadoop.fs.s3a.access.key xxxx
+# spark.hadoop.fs.s3a.secret.key xxxx
 # spark.hadoop.fs.s3a.impl org.apache.hadoop.fs.s3a.S3AFileSystem
 sudo cp /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-defaults.conf.template /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-defaults.conf
 sudo vi /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-defaults.conf
