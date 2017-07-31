@@ -79,8 +79,8 @@ jupyter notebook
 # Trying to give spark access to s3.
 sudo cp /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-env.sh.template /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-env.sh
 sudo vi /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-env.sh
-AWS_ACCESS_KEY_ID='AKIAIKRGL2WLKQS4MGSQ'
-AWS_SECRET_ACCESS_KEY='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'
+AWS_ACCESS_KEY_ID='xxxx'
+AWS_SECRET_ACCESS_KEY='xxxx'
 
 # see trying_access_to_s3.ipynb
 # not working, and apparently the above solution is terrible:
