@@ -106,8 +106,8 @@ sudo cp /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-
 # spark.hadoop.fs.s3a.impl org.apache.hadoop.fs.s3a.S3AFileSystem
 sudo cp /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-defaults.conf.template /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-defaults.conf
 sudo vi /alvaroRprocessingEBS2/Tools/spark/spark-2.1.1-bin-hadoop2.7/conf/spark-defaults.conf
-Spark.hadoop.fs.s3a.access.key AKIAIKRGL2WLKQS4MGSQ
-spark.hadoop.fs.s3a.secret.key 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
+Spark.hadoop.fs.s3a.access.key xxxx
+spark.hadoop.fs.s3a.secret.key xxxx
 spark.hadoop.fs.s3a.impl org.apache.hadoop.fs.s3a.S3AFileSystem
 # still not working, see the trying_access_to_s3 notebook, which is copying code from
 # https://spark.apache.org/docs/2.1.0/sql-programming-guide.html
