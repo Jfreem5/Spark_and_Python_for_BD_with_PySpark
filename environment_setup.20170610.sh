@@ -111,3 +111,6 @@ spark.hadoop.fs.s3a.secret.key xxxx
 spark.hadoop.fs.s3a.impl org.apache.hadoop.fs.s3a.S3AFileSystem
 # still not working, see the trying_access_to_s3 notebook, which is copying code from
 # https://spark.apache.org/docs/2.1.0/sql-programming-guide.html
+
+# In the end the Qubole people were able to make it work, see emails and Qubole
+# notebooks "testsAlvaro" and "loadFileFromS3Alv".
